@@ -23,7 +23,6 @@ func main() {
 		return
 	}
 
-	// 1. Проверка первого операнда
 	a, err1 := strconv.ParseFloat(parts[0], 64)
 	if err1 != nil {
 		fmt.Println("Invalid first operand")
@@ -32,14 +31,12 @@ func main() {
 
 	op := parts[1]
 
-	// 2. Проверка второго операнда
 	b, err2 := strconv.ParseFloat(parts[2], 64)
 	if err2 != nil {
 		fmt.Println("Invalid second operand")
 		return
 	}
 
-	// 3. Вычисление
 	var result float64
 	switch op {
 	case "+":
