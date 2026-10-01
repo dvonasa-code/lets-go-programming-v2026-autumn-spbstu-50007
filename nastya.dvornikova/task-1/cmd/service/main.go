@@ -27,20 +27,34 @@ func main() {
 		return
 	}
 
+	// 1. Проверка первого операнда
 	a, err := strconv.ParseFloat(parts[0], 64)
 	if err != nil {
 		fmt.Println("Invalid first operand")
 		return
 	}
 
+	// 2. Проверка знака операции (должна идти ДО проверки второго операнда)
 	op := parts[1]
+	if op != "+" && op != "-" && op != "*" && op != "/" {
+		fmt.Println("Invalid operation")
+		return
+	}
 
+	// 3. Проверка второго операнда
 	b, err := strconv.ParseFloat(parts[2], 64)
 	if err != nil {
 		fmt.Println("Invalid second operand")
 		return
 	}
 
+	// 4. Проверка деления на ноль
+	if op == "/" && b == 0 {
+		fmt.Println("Division by zero")
+		return
+	}
+
+	// 5. Вычисление
 	var result float64
 	switch op {
 	case "+":
@@ -50,14 +64,7 @@ func main() {
 	case "*":
 		result = a * b
 	case "/":
-		if b == 0 {
-			fmt.Println("Division by zero")
-			return
-		}
 		result = a / b
-	default:
-		fmt.Println("Invalid operation")
-		return
 	}
 
 	fmt.Println(result)
